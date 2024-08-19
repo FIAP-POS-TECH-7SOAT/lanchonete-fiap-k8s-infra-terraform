@@ -33,6 +33,8 @@ resource "aws_eks_cluster" "lanchonete-fiap-cluster" {
 
 }
 
+
+
 resource "aws_eks_node_group" "eks_nodes" {
   cluster_name = var.cluster_name
   subnet_ids = var.subnet_ids
