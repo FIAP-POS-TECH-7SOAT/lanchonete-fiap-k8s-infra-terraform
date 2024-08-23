@@ -24,12 +24,15 @@ jobs:
         echo "aws_secret_access_key = \"${{ secrets.AWS_SECRET_ACCESS_KEY }}\"" >> terraform.tfvars
         echo "aws_session_token = \"${{ secrets.AWS_SESSION_TOKEN }}\"" >> terraform.tfvars
         echo "cluster_name = \"${{ secrets.CLUSTER_NAME }}\"" >> terraform.tfvars
-        SUBNET_IDS_LIST=$(echo "${{ secrets.SUBNET_IDS }}" | sed 's/,/","/g' | sed 's/^/"/;s/$/"/')
+        SUBNET_IDS_LIST=$(echo "${{ secrets.SUBNET_IDS }}" | sed 's/"//g' | sed 's/,/","/g' | sed 's/^/"/;s/$/"/')
         echo "subnet_ids = [${SUBNET_IDS_LIST}]" >> terraform.tfvars
         echo "max_size_capacity = \"${{ secrets.MAX_SIZE_CAPACITY }}\"" >> terraform.tfvars
         echo "min_size_capacity = \"${{ secrets.MIN_SIZE_CAPACITY }}\"" >> terraform.tfvars
         echo "desired_capacity = \"${{ secrets.DESIRED_CAPACITY }}\"" >> terraform.tfvars
         echo "node_instance_type = \"${{ secrets.NODE_INSTANCE_TYPE }}\"" >> terraform.tfvars
+
+    - name: Debug terraform.tfvars
+      run: cat terraform.tfvars
 
     - name: Terraform Init
       run: terraform init
