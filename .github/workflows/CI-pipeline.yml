@@ -41,7 +41,7 @@ jobs:
         DESIRED_CAPACITY: ${{ secrets.DESIRED_CAPACITY }}
         NODE_INSTANCE_TYPE: ${{ secrets.NODE_INSTANCE_TYPE }}
       run: |
-        terraform apply -var="aws_region=${AWS_REGION}" \
+        terraform plan -var="aws_region=${AWS_REGION}" \
                          -var="aws_access_key_id=${AWS_ACCESS_KEY_ID}" \
                          -var="aws_secret_access_key=${AWS_SECRET_ACCESS_KEY}" \
                          -var="aws_session_token=${AWS_SESSION_TOKEN}" \
