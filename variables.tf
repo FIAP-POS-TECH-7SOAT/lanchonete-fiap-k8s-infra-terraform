@@ -31,13 +31,13 @@ variable "subnet_ids" {
 variable "max_size_capacity" {
   description = "Max size number of nodes"
   type        = number
-  
+
 }
 
 variable "min_size_capacity" {
   description = "Min size number of nodes"
   type        = number
-  
+
 }
 
 variable "desired_capacity" {
