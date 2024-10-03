@@ -6,6 +6,7 @@ terraform {
       version = "5.63.0"
     }
   }
+  backend "s3" {}
 }
 
 data "aws_iam_role" "eks_cluster_role" {
@@ -24,6 +25,10 @@ resource "aws_eks_cluster" "lanchonete-fiap-cluster" {
 
   name     = var.cluster_name
   role_arn = data.aws_iam_role.eks_cluster_role.arn
+  tags = {
+    Description = "EKS"
+    
+  }
 
   vpc_config {
     subnet_ids              = var.subnet_ids

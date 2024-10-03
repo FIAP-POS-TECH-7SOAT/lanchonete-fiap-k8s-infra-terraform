@@ -25,6 +25,7 @@ website/node_modules
 *.iml
 
 terraform.tfvars
+backend.hcl
 
 website/vendor
 
